@@ -1,8 +1,5 @@
 // deps
-// import { Utils } from 'cylon';
-
-// helpers
-// const { every, after } = Utils;
+import { throttle } from 'lodash';
 
 //
 //  BB8 COMMANDS
@@ -11,14 +8,16 @@ export default function (bb8) {
     // get device interface
     const { device } = bb8;
 
-    //
-    //  MOVE / ROLL
-    //
-    bb8.move = (speed = bb8.speed, heading, state = null, callback = null) => {
-        console.log('[BB8] Move @ ', speed, heading);
+    // due to some sphero limitations,
+    // it's better to throttle delay and not spam skill BB8 droid
+    const { BLUETOOTH_THROTTLE_DELAY } = bb8.config;
 
-        // @TODO: add orb speed
-        device.roll(speed, heading, state, callback);
+    //
+    //  SET MOVEMENT SPEED
+    //
+    bb8.setSpeed = (factor) => {
+        bb8.speed = factor;
+        // @TODO
     };
 
     //
@@ -30,11 +29,11 @@ export default function (bb8) {
     };
 
     //
-    //  SET MOVEMENT SPEED
+    //  MOVE / ROLL
     //
-    bb8.setSpeed = (factor) => {
-        bb8.speed = factor;
-        // @TODO
+    bb8.move = (speed = bb8.speed, heading = bb8.orientation, state = 0, callback = null) => {
+        console.log('[BB8] Move @ ', speed, heading);
+        device.roll(speed, heading, state, callback);
     };
 
     //
@@ -49,13 +48,21 @@ export default function (bb8) {
         // device.setRotationRate(0-255, cb);
 
         // set new heading
-        bb8.orientation = heading; // @TODO: refactor to setHeading()?
+        // bb8.orientation = heading; // @TODO: refactor to setHeading()?
         // device.heading = heading; // @TODO: double check this
         device.roll(0, heading, 0); // turn in place?
     };
 
     //
-    //  THROTTLED MOVEMENT
+    //  THROTTLED MOVEMENT / TURN helpers
     //
-    // @TODO
+    bb8.throttleMove = throttle(() => {
+        // console.log('throttle movement');
+        bb8.move(bb8.speed, bb8.orientation, () => {});
+    }, BLUETOOTH_THROTTLE_DELAY);
+
+    bb8.throttleTurn = throttle((angle) => {
+        // console.log('throttle turn @ ', angle);
+        bb8.turn(angle);
+    }, BLUETOOTH_THROTTLE_DELAY);
 }

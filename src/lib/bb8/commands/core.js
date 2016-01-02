@@ -26,8 +26,10 @@ export default function (bb8) {
     //
     //  CALIBRATION TOGGLER
     //
-    bb8.toggleCalibration = (flag = false) => {
-        if (flag) {
+    bb8.toggleCalibration = (flag) => {
+        const status = flag || !bb8.isCalibrating;
+
+        if (status) {
             console.log('[BB8] ::START CALIBRATION::');
 
             // start calibration / disable stabilization
@@ -42,6 +44,7 @@ export default function (bb8) {
             device.finishCalibration();
 
             // set flag
+            bb8.orientation = 0;
             bb8.isCalibrating = false;
         }
     };
