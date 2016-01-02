@@ -1,0 +1,13 @@
+{
+    "root": true,
+    "extends": "airbnb",
+
+    "rules": {
+        "indent": [2, 4, { "SwitchCase": 1 }],
+
+        "no-console": 0,
+        "comma-dangle": [2, "never"],
+        "no-unused-vars": [1, {"vars": "local", "args": "none"}],
+        "no-use-before-define": [2, "nofunc"]
+    }
+}

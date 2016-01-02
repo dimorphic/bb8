@@ -1,0 +1,29 @@
+# Don't ignore these
+!.gitkeep
+
+################
+# System files #
+################
+*.log
+.npmrc
+.idea/
+*.sublime-project
+*.sublime-workspace
+.tmp/
+.sass-cache/
+node_modules/
+*.sublime-project
+*.sublime-workspace
+
+###############
+# Config file #
+###############
+src/config.js
+
+###################
+# Generated files #
+###################
+build/
+dist/
+coverage/
+tests/results/
