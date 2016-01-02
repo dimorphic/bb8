@@ -20,7 +20,13 @@ export default class BB8 extends EventEmitter {
             name: null,
             color: null,
 
-            autoConnect: false
+            autoConnect: false,
+
+            // due to some sphero limitations,
+            // it's better to throttle delay and not spam skill BB8 droid
+            // (@TODO: fix SDK packets)
+            // throttleCommands: false, // BLE anti-spam?
+            BLUETOOTH_THROTTLE_DELAY: 100 // BLE commands throttle min delay
         };
 
         // extend default config with options
@@ -75,7 +81,8 @@ export default class BB8 extends EventEmitter {
     disconnect() {
         console.log('[BB8] Disconnecting...');
 
-        // @TODO: check this out. disconnect doesn't kill connection
+        // @TODO: fix this
+        // disconnect doesn't kill connection
         this.device.disconnect(this.onDisconnect.bind(this));
     }
 
