@@ -6,7 +6,7 @@ import * as utils from './utils';
 //
 export default function (joystick) {
     // get device interface
-    const controller = joystick.device;
+    // const controller = joystick.device;
 
     // console.log('[JOYSTICK] CMDS @ ', controller);
 
@@ -32,7 +32,7 @@ export default function (joystick) {
     };
 
     //
-    //  convert trigger position to bb8 speed factor
+    //  convert Xbox trigger position to bb8 speed factor
     //  trigger position interval:  [-1 ... 1]
     //  bb8 speed interval :        [0 ... 100]
     //

@@ -78,13 +78,6 @@ export default class Joystick extends EventEmitter {
     }
 
     setHandlers(device) {
-        // console.log(
-        //     '[JOYSTICK] Setting handlers...',
-        //     Object.keys(device.controller).length,
-        //     '\n\n',
-        //     Object.keys(this.device.controller).length
-        // );
-
         HANDLERS.handleButtons.call(this, device);
         HANDLERS.handleSticks.call(this, device);
         HANDLERS.handleTriggers.call(this, device);
