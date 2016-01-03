@@ -4,7 +4,7 @@ import Joystick from './lib/joystick';
 
 // device uuid
 import { DEVICE_UUID } from './config';
-import commands from './lib/commands';
+import commands from './commands';
 
 // @DEBUG
 import { inspect } from './helpers';
@@ -15,51 +15,58 @@ const INTERACTIVE = true;
 //
 //  Create xbox & droid
 //
-const droid = new BB8({ uuid: DEVICE_UUID, autoConnect: false });
+const droid = new BB8({ uuid: DEVICE_UUID, autoConnect: true }); // @TODO
 const xbox = new Joystick({ autoConnect: true });
+
 const HANDLERS = commands(droid, xbox);
 
-//  DROID reconnect
-xbox.on('start:press', () => { droid.reconnect(); });
+// CONTROLS MAP
+const CONTROLS = {
+    'stick:move': HANDLERS.handleSticks,
+    'trigger:move': HANDLERS.handleTriggers,
+    'button:press': HANDLERS.controlColor,
 
-// DROID on connect
-droid.on('connect', () => {
-    // droid.debug();
-    // droid.debugQue();
-
-    // activate joystick controls
-    activateControls();
-});
-
-function activateControls() {
-    console.log('Activating joystick...');
-
-    // color controls
-    xbox.on('button:press', HANDLERS.controlColor);
-
-    // sticks: movement / calibration
-    xbox.on('stick:move', HANDLERS.handleSticks);
-
-    //  triggers: speed
-    xbox.on('trigger:move', HANDLERS.handleTriggers);
-
-    //  toggle calibration
-    xbox.on('select:press', droid.toggleCalibration);
-
-    // ping
-    xbox.on('lb:press', () => {
+    'select:press': droid.toggleCalibration,
+    'rb:press': droid.debugFlags,
+    'lb:press': () => {
         console.log('Pinging droid...');
         droid.device.ping((err, data) => {
             console.log('Droid pong!');
             console.log(err || inspect(data));
         });
-    });
+    }
+};
 
-    // @DEBUG
-    xbox.on('rb:press', () => {
-        // droid.colorSpin();
-        droid.debugFlags();
-    });
+let CONTROLS_LISTENERS = [];
+
+let HAS_CONTROL = false;
+
+//  DROID reconnect
+HANDLERS.addControls({
+    'start:press': () => {
+        if (HAS_CONTROL) {
+            HANDLERS.removeControls(CONTROLS_LISTENERS);
+            CONTROLS_LISTENERS = [];
+        } else {
+            CONTROLS_LISTENERS = HANDLERS.addControls(CONTROLS);
+        }
+
+        HAS_CONTROL = !HAS_CONTROL;
+    }
+});
+
+// DROID on connect
+droid.on('connect', () => {
+    // activate joystick controls
+    console.log('[BB8] Activating controls...');
+
+    // add / bind controls
+    CONTROLS_LISTENERS = HANDLERS.addControls(CONTROLS);
+    HAS_CONTROL = true;
+});
+
+function disableControls() {
+    // @TODO?
 }
 
 // interactive CLI
