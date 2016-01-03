@@ -1,13 +1,44 @@
-export default function (droid, xbox) {
+// @DEBUG
+import { inspect } from './helpers';
 
-    //
-    //  COMMANDS and HANDLERS
-    //  to control BB8 via Xbox controller
-    //
+//
+//  COMMANDS and HANDLERS
+//  to control BB8 via Xbox controller
+//
+export default function (droid, xbox) {
+    // magic powers
     const COMMANDS = {};
 
     // XBOX fine control sticks / triggers threeshold
     const STICK_THREESHOLD = 0.3;
+
+    //
+    //
+    //
+    COMMANDS.addControls = (controls) => {
+        const EVENTS = Object.keys(controls);
+        const listeners = {};
+
+        EVENTS.forEach((event) => {
+            const control = xbox.on(event, controls[event]);
+            const callback = control._events[event];
+            listeners[event] = callback;
+        });
+
+        return listeners;
+    };
+
+    //
+    // @TODO
+    //
+    COMMANDS.removeControls = (listeners) => {
+        const EVENTS = Object.keys(listeners);
+
+        EVENTS.forEach((event) => {
+            console.log('!!! remove event @ ', event);
+            xbox.removeListener(event, listeners[event]);
+        });
+    };
 
     //
     //  HANDLERS
