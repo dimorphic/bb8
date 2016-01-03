@@ -15,13 +15,23 @@ const INTERACTIVE = true;
 //
 //  Create xbox & droid
 //
-const droid = new BB8({ uuid: DEVICE_UUID, autoConnect: true }); // @TODO
 const xbox = new Joystick({ autoConnect: true });
-
+const droid = new BB8({ uuid: DEVICE_UUID, autoConnect: true }); // @TODO
 const HANDLERS = commands(droid, xbox);
 
-// CONTROLS MAP
-const CONTROLS = {
+// DROID (RE)BOOT / RESPAWNER
+HANDLERS.addControls({
+    'home:press': () => {
+        // console.log('home bttn! respawn droid worker?');
+        droid.reconnect();
+    }
+});
+
+//
+//  USER CONTROLS
+//  can be toggled on/off
+//
+const USER_CONTROLS = {
     'stick:move': HANDLERS.handleSticks,
     'trigger:move': HANDLERS.handleTriggers,
     'button:press': HANDLERS.controlColor,
@@ -37,36 +47,34 @@ const CONTROLS = {
     }
 };
 
-let CONTROLS_LISTENERS = [];
-
-let HAS_CONTROL = false;
-
-//  DROID reconnect
-HANDLERS.addControls({
-    'start:press': () => {
-        if (HAS_CONTROL) {
-            HANDLERS.removeControls(CONTROLS_LISTENERS);
-            CONTROLS_LISTENERS = [];
-        } else {
-            CONTROLS_LISTENERS = HANDLERS.addControls(CONTROLS);
-        }
-
-        HAS_CONTROL = !HAS_CONTROL;
-    }
-});
-
 // DROID on connect
 droid.on('connect', () => {
-    // activate joystick controls
-    console.log('[BB8] Activating controls...');
+    console.log('!!!! DROID CONNECT');
 
-    // add / bind controls
-    CONTROLS_LISTENERS = HANDLERS.addControls(CONTROLS);
-    HAS_CONTROL = true;
+    // add commands toggler
+    HANDLERS.addControls({ 'start:press': toggleControls });
+
+    // activate joystick controls
+    toggleControls();
 });
 
-function disableControls() {
-    // @TODO?
+//
+// toggle user commands / controls helper
+//
+let CONTROLS_LISTENERS = [];
+function toggleControls() {
+    console.log('toggle ctrls');
+
+    if (!droid.userControl) {
+        console.log('[BB8] Enabled user control. Go nuts!');
+        CONTROLS_LISTENERS = HANDLERS.addControls(USER_CONTROLS);
+    } else {
+        console.log('[BB8] Disabled user controls');
+        HANDLERS.removeControls(CONTROLS_LISTENERS);
+    }
+
+    // toggle control flag
+    droid.userControl = !droid.userControl;
 }
 
 // interactive CLI

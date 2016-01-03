@@ -8,12 +8,13 @@ import { inspect } from './helpers';
 export default function (droid, xbox) {
     // magic powers
     const COMMANDS = {};
+    let COMMANDS_LISTENERS = {};
 
     // XBOX fine control sticks / triggers threeshold
     const STICK_THREESHOLD = 0.3;
 
     //
-    //
+    //  ADD COMMAND(S) CONTROLS
     //
     COMMANDS.addControls = (controls) => {
         const EVENTS = Object.keys(controls);
@@ -25,18 +26,24 @@ export default function (droid, xbox) {
             listeners[event] = callback;
         });
 
+        // add new listeners to tracker list
+        COMMANDS_LISTENERS = Object.assign({}, COMMANDS_LISTENERS, listeners);
+
         return listeners;
     };
 
     //
-    // @TODO
+    //  REMOVE COMMAND(S) CONTROLS
     //
     COMMANDS.removeControls = (listeners) => {
         const EVENTS = Object.keys(listeners);
 
         EVENTS.forEach((event) => {
-            console.log('!!! remove event @ ', event);
+            // remove event
             xbox.removeListener(event, listeners[event]);
+
+            // clear event from tracker list
+            delete COMMANDS_LISTENERS[event];
         });
     };
 
