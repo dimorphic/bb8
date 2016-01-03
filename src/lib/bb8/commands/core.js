@@ -15,6 +15,7 @@ export default function (bb8) {
     //
     // @TODO
     // bb8.throttle = (cb, minDuration) => {};
+    // bb8.setBluetoothPower = (level) => {};
 
     //
     //  GET ANGLE HELPER

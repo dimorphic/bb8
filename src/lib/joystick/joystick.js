@@ -62,7 +62,7 @@ export default class Joystick extends EventEmitter {
     }
 
     disconnect() {
-        // @TODO
+        this.device.halt(); // @TODO: double check this
     }
 
     //

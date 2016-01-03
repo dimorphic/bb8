@@ -27,7 +27,7 @@ export default function (bb8) {
     };
 
     //
-    //  FUN ACTIONS (@TODO: move this)
+    //  FUN ACTIONS
     //
     bb8.colorSpin = (interval = 500) => {
         return every(interval, () => {

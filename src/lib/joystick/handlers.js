@@ -62,10 +62,9 @@ export function handleSticks(device) {
         // on move
         controller.on(moveEvent, (pos) => {
             // console.log(`[JOYSTICK] Stick ${stick} @ ${pos}`);
-
             // if (!pos > STICK_THREESHOLD) { return void 0; }
 
-            // @TODO: update internal sticks positions pointer?
+            // update internal sticks positions pointer
             handleStickPosition.call(this, stick, pos);
 
             // mirror event
