@@ -39,8 +39,18 @@ export default function (droid, xbox) {
         const EVENTS = Object.keys(listeners);
 
         EVENTS.forEach((event) => {
-            // remove event
-            xbox.removeListener(event, listeners[event]);
+            const listener = listeners[event];
+
+            // check for multiple listeners
+            if (typeof listener === 'function') {
+                // remove event
+                xbox.removeListener(event, listener);
+            } else if (Array.isArray(listener)) {
+                listener.forEach((it) => {
+                    // remove event
+                    xbox.removeListener(event, it);
+                });
+            }
 
             // clear event from tracker list
             delete COMMANDS_LISTENERS[event];

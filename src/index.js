@@ -17,12 +17,16 @@ const INTERACTIVE = true;
 //
 const xbox = new Joystick({ autoConnect: true });
 const droid = new BB8({ uuid: DEVICE_UUID, autoConnect: true }); // @TODO
+
 const HANDLERS = commands(droid, xbox);
+let CONTROLS_LISTENERS = [];
 
 // DROID (RE)BOOT / RESPAWNER
 HANDLERS.addControls({
     'home:press': () => {
         // console.log('home bttn! respawn droid worker?');
+        // HANDLERS.removeControls(CONTROLS_LISTENERS);
+        toggleControls();
         droid.reconnect();
     }
 });
@@ -61,16 +65,15 @@ droid.on('connect', () => {
 //
 // toggle user commands / controls helper
 //
-let CONTROLS_LISTENERS = [];
 function toggleControls() {
     console.log('toggle ctrls');
 
     if (!droid.userControl) {
-        console.log('[BB8] Enabled user control. Go nuts!');
         CONTROLS_LISTENERS = HANDLERS.addControls(USER_CONTROLS);
+        console.log('[BB8] Enabled user control. Go nuts!');
     } else {
-        console.log('[BB8] Disabled user controls');
         HANDLERS.removeControls(CONTROLS_LISTENERS);
+        console.log('[BB8] Disabled user controls');
     }
 
     // toggle control flag
