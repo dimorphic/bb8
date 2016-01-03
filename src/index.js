@@ -10,7 +10,7 @@ import commands from './commands';
 import { inspect } from './helpers';
 
 // @TODO: add process respawner? split to droid worker?
-const INTERACTIVE = true;
+const INTERACTIVE = false;
 
 //
 //  Create xbox & droid
@@ -24,8 +24,6 @@ let CONTROLS_LISTENERS = [];
 // DROID (RE)BOOT / RESPAWNER
 HANDLERS.addControls({
     'home:press': () => {
-        // console.log('home bttn! respawn droid worker?');
-        // HANDLERS.removeControls(CONTROLS_LISTENERS);
         toggleControls();
         droid.reconnect();
     }

@@ -97,9 +97,11 @@ export default class BB8 extends EventEmitter {
 
             // workaround
             const { connection } = this.device;
-            connection.wake(() => {
-                this.connect();
-            });
+            if (connection) {
+                connection.wake(() => {
+                    this.connect();
+                });
+            }
         }
 
         // connect
