@@ -25,7 +25,7 @@ export default function (bb8) {
     //
     bb8.stop = () => {
         console.log('[BB8] Stop movement');
-        device.stop();
+        device.roll(0, bb8.orientation, 0);
     };
 
     //
@@ -53,8 +53,6 @@ export default function (bb8) {
         // device.setRotationRate(0-255, cb);
 
         // set new heading
-        // bb8.orientation = heading; // @TODO: refactor to setHeading()?
-        // device.heading = heading; // @TODO: double check this
         device.roll(0, heading, 0); // turn in place?
     };
 
@@ -83,21 +81,26 @@ export default function (bb8) {
         bb8.setPermFlags(FLAG, (err, data) => {
             if (err) { return void 0; }
 
+            console.log('[BB8] Vector drive @ ', mode);
+
             // update internal flag
             bb8.driveMode = mode;
         });
     };
 
     //
-    //  THROTTLED MOVEMENT / TURN helpers
+    //  THROTTLED helpers (till BLE packets spam fix)
+    //  STOP / MOVEMENT / TURN
     //
+    bb8.throttleStop = throttle(() => {
+        bb8.stop();
+    }, BLUETOOTH_THROTTLE_DELAY);
+
     bb8.throttleMove = throttle(() => {
-        // console.log('throttle movement');
         bb8.move(bb8.speed, bb8.orientation, () => {});
     }, BLUETOOTH_THROTTLE_DELAY);
 
     bb8.throttleTurn = throttle((angle) => {
-        // console.log('throttle turn @ ', angle);
         bb8.turn(angle);
     }, BLUETOOTH_THROTTLE_DELAY);
 }

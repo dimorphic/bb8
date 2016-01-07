@@ -1,5 +1,5 @@
 // @DEBUG
-import { inspect } from './helpers';
+// import { inspect } from './lib/helpers';
 
 //
 //  COMMANDS and HANDLERS
@@ -63,7 +63,7 @@ export default function (droid, xbox) {
     COMMANDS.handleTriggers = (trigger, position) => {
         // LEFT
         if (trigger === 'lt') {
-            droid.stop(); // emergency stop
+            droid.throttleStop(); // emergency stop
 
         // RIGHT
         } else if (trigger === 'rt') {
