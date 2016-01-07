@@ -28,11 +28,16 @@ const JOYSTICK = {
 //  SPHERO (v2) - Starwars BB8
 //
 const BB8 = {
-    DIRECTIONS: {
+    DIRECTION: {
         'FORWARD': 0,
         'REVERSE': 180,
         'LEFT': 270,
         'RIGHT': 90
+    },
+
+    DRIVE_MODE: {
+        'NORMAL': 0x00000000,
+        'VECTOR': 0x00000002
     }
 };
 

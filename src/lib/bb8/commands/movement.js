@@ -1,5 +1,6 @@
 // deps
 import { throttle } from 'lodash';
+import CONSTANTS from '../../constants';
 
 //
 //  BB8 COMMANDS
@@ -17,7 +18,6 @@ export default function (bb8) {
     //
     bb8.setSpeed = (factor) => {
         bb8.speed = factor;
-        // @TODO
     };
 
     //
@@ -33,7 +33,12 @@ export default function (bb8) {
     //
     bb8.move = (speed = bb8.speed, heading = bb8.orientation, state = 0, callback = null) => {
         console.log('[BB8] Move @ ', speed, heading);
+
+        // move it
         device.roll(speed, heading, state, callback);
+
+        // emit movement event
+        bb8.emit('move', { speed, heading });
     };
 
     //
@@ -51,6 +56,36 @@ export default function (bb8) {
         // bb8.orientation = heading; // @TODO: refactor to setHeading()?
         // device.heading = heading; // @TODO: double check this
         device.roll(0, heading, 0); // turn in place?
+    };
+
+    //
+    //  BOOST
+    //  @TODO
+    //
+    // bb8.toggleBoost = (toggle = !bb8.boost) => {
+    //     console.log('boost @ ', toggle);
+    //     device.boost(toggle, (err, data) => {
+    //         if (err) { return void 0; }
+    //
+    //         // update internal flag
+    //         bb8.boost = toggle;
+    //     });
+    // };
+
+    //
+    //  DRIVE Mode
+    //
+    bb8.toggleDriveMode = (mode = !bb8.driveMode) => {
+        // drive modes
+        const { DRIVE_MODE } = CONSTANTS.BB8;
+        const FLAG = mode ? DRIVE_MODE.VECTOR : DRIVE_MODE.NORMAL;
+
+        bb8.setPermFlags(FLAG, (err, data) => {
+            if (err) { return void 0; }
+
+            // update internal flag
+            bb8.driveMode = mode;
+        });
     };
 
     //
