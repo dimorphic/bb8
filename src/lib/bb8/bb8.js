@@ -36,18 +36,21 @@ export default class BB8 extends EventEmitter {
 
         // extend default config with options
         this.config = Object.assign({}, DEFAULTS, options);
+        this.debug = false; // need console.logs, bro ?
 
         // device interface controller
         this.device = null;
-        this.userControl = false;
 
         // status 'flags'
         this.isConnected = false; // online?
         this.isCalibrating = false; // stablization on?
+        this.driveMode = false; // enable Vector Drive? (check bb8.setPermFlags)
+        this.userControl = false;
 
         // orb props
         this.orientation = 0;
         this.speed = 0;
+        // this.boost = 0; // @TODO
 
         // boot it up
         this.init();
@@ -88,7 +91,7 @@ export default class BB8 extends EventEmitter {
     }
 
     reconnect() {
-        console.log('experimental reconnect...'); //
+        console.log('[BB8] Experimental reconnect...'); //
 
         // disconnect if connected
         if (this.isConnected || this.device) {
