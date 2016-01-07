@@ -20,8 +20,8 @@ const inspect = (obj, depth = null) => {
 //  respawn requester
 //  exit process with custom code
 //
-const respawnMe = (code = RESPAWN_CODE) => {
-    process.exit(code);
+const respawnMe = () => {
+    process.exit(RESPAWN_CODE);
 };
 
 //
@@ -38,7 +38,6 @@ const respawner = (app, args = []) => {
     // when this process gets terminated (as user intends)
     // ...spawn again
     proc.on('close', (code) => {
-        // console.log('close via code @ ', code);
         if (code === RESPAWN_CODE) respawner(app, args);
     });
 };
