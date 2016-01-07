@@ -7,7 +7,7 @@
   "main": "bot.js",
   "scripts": {
     "start": "node_modules/.bin/nodemon --quiet --watch dist --exec 'clear && node dist/'",
-    "build": "node_modules/.bin/babel src --out-dir dist",
+    "build": "rm -rf dist && node_modules/.bin/babel src --out-dir dist --source-maps inline",
     "dev": "node_modules/.bin/babel src --out-dir dist --watch --debug"
   },
   "dependencies": {
