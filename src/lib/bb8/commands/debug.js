@@ -1,5 +1,5 @@
 // deps
-import { inspect } from '../../../helpers'; // @DEBUG
+import { inspect } from '../../helpers'; // @DEBUG
 import { Utils } from 'cylon';
 
 // helpers

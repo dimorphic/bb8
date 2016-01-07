@@ -6,7 +6,7 @@ import sphero from 'sphero';
 import commands from './commands';
 
 // @DEBUG
-// import { inspect } from '../../helpers';
+import { inspect } from '../helpers';
 
 //
 //  BB8 mighty droid
@@ -42,9 +42,9 @@ export default class BB8 extends EventEmitter {
         this.device = null;
 
         // status 'flags'
-        this.isConnected = false; // online?
+        this.isConnected = false;   // online?
         this.isCalibrating = false; // stablization on?
-        this.driveMode = false; // enable Vector Drive? (check bb8.setPermFlags)
+        this.driveMode = false;     // enable Vector Drive? (check bb8.setPermFlags)
         this.userControl = false;
 
         // orb props
@@ -85,34 +85,32 @@ export default class BB8 extends EventEmitter {
     disconnect() {
         console.log('[BB8] Disconnecting...');
 
-        // @TODO: fix this. doesn't kill connection
+        // @TODO: fix this.
+        // sphero.disconnect() doesn't kill connection
         // clear device for now?
         this.device.disconnect(this.onDisconnect.bind(this));
     }
 
     reconnect() {
-        console.log('[BB8] Experimental reconnect...'); //
+        console.log('[BB8] Experimental (wakeup) reconnect...'); //
 
         // disconnect if connected
         if (this.isConnected || this.device) {
-            this.disconnect();
-            // return void 0;
+            this.disconnect(); // this doesn't kill connection. need @FIX
 
-            // workaround
-            const { connection } = this.device;
-            if (connection) {
-                connection.wake(() => {
-                    this.connect();
-                });
-            }
+            // workaround?
+            this.wakeup(this.connect.bind(this));
         }
-
-        // connect
-        // this.connect(); // doesn't work in another fn? dafak
     }
 
     onConnect() {
         console.log('[BB8] Connected!');
+
+        // get device perm flags
+        this.device.getPermOptionFlags((err, data) => {
+            if (!err) { return void 0; }
+            this.driveMode = data.vectorDrive;
+        });
 
         this.isConnected = true;
         this.emit('connect');
@@ -123,5 +121,19 @@ export default class BB8 extends EventEmitter {
 
         this.isConnected = false;
         this.emit('disconnect');
+    }
+
+    wakeup(callback) {
+        // workaround
+        const { connection } = this.device;
+
+        if (connection) {
+            connection.wake(() => {
+                console.log('droid wake call!');
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            });
+        }
     }
 }
