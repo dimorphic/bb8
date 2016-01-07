@@ -1,3 +1,5 @@
+require('source-map-support').install();
+
 // deps
 import BB8 from './lib/bb8';
 import Joystick from './lib/joystick';
@@ -39,14 +41,8 @@ const USER_CONTROLS = {
     'button:press': HANDLERS.controlColor,
 
     'select:press': droid.toggleCalibration,
-    'rb:press': droid.debugFlags,
-    'lb:press': () => {
-        console.log('Pinging droid...');
-        droid.device.ping((err, data) => {
-            console.log('Droid pong!');
-            console.log(err || inspect(data));
-        });
-    }
+    'rb:press': droid.getFlags,
+    'lb:press': droid.toggleDriveMode
 };
 
 // DROID on connect
