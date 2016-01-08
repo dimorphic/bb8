@@ -27,18 +27,21 @@ const respawnMe = () => {
 //
 //  respawner
 //
-const respawner = (app, args = []) => {
+const respawner = (app, args = [], opts = {}) => {
     if (!app) {
         throw new Error('Need app/process to spawn, bro!');
     }
 
+    // default options
+    const options = Object.assign({}, { stdio: 'inherit' }, opts);
+
     // spawn it
-    const proc = spawn(app, args, { stdio: 'inherit' });
+    const proc = spawn(app, args, options);
 
     // when this process gets terminated (as user intends)
     // ...spawn again
     proc.on('close', (code) => {
-        if (code === RESPAWN_CODE) respawner(app, args);
+        if (code === RESPAWN_CODE) respawner(app, args, options);
     });
 };
 
