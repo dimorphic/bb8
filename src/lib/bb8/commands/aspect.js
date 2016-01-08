@@ -1,6 +1,7 @@
 // deps
 import { Utils } from 'cylon';
-// import { colors } from '../colors';
+import tinycolor from 'tinycolor2';
+import { COLORS, getHumanColor } from '../colors';
 
 // helpers
 const { every } = Utils;
@@ -13,14 +14,36 @@ export default function (bb8) {
     const { device } = bb8;
 
     //
-    //  COLOR
+    //  GET CURRENT COLOR
     //
-    bb8.color = (color) => {
+    bb8.getCurrentColor = (callback) => {
+        // get orb current color (if any, default 0x000000)
+        device.getColor((err, data) => {
+            if (err) {
+                throw new Error('Can\'t get device color. Check device connection. ', err);
+            }
+
+            // spread color data
+            const { red, green, blue } = data;
+
+            // get hex from RGB
+            const color = tinycolor({ r: red, g: green, b: blue }).toHexString();
+
+            // issue callback
+            if (typeof callback === 'function') { callback(color); }
+        });
+    };
+
+    //
+    //  SET COLOR
+    //
+    bb8.setColor = (color) => {
+        console.log('[BB8] Set color @ ', color);
         device.color(color);
     };
 
     //
-    //  RANDOM COLOR
+    //  SET RANDOM COLOR
     //
     bb8.randomColor = () => {
         device.randomColor();
@@ -35,22 +58,22 @@ export default function (bb8) {
         });
     };
 
-    /*
-    // @TODO
-    bb8.colorSpinHue = (base) => {
+    bb8.colorSpinHue = (startColor) => {
+        const base = startColor || getHumanColor().hex;
         const MAX_SPIN = 360;
-
         let degress = 0;
         let index = 1;
 
-        every((16).ms(), () => {
+        return every((16).ms(), () => {
             degress = degress + index;
 
+            // spin color
             const randColor = tinycolor(base).spin(degress).toString();
-            console.log('!! new color: ', randColor);
 
-            orb.color(randColor);
+            // set droid color
+            bb8.setColor(randColor);
 
+            // reverse spin direction
             if (degress > MAX_SPIN) {
                 index = -1;
             } else if (degress < 0) {
@@ -58,5 +81,4 @@ export default function (bb8) {
             }
         });
     };
-    */
 }

@@ -147,8 +147,8 @@ const COLORS = {
 
 // expose
 module.exports = {
-    colors: COLORS,
-    randomColor: () => {
+    COLORS,
+    getHumanColor: () => {
         const keys = Object.keys(COLORS);
         const random = ~~(keys.length * Math.random());
 
