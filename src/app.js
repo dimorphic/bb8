@@ -20,7 +20,7 @@ let CONTROLS_LISTENERS = [];
 HANDLERS.addControls({
     'home:press': () => {
         console.log('I GO DIE NOW!');
-        toggleControls();
+        toggleControls(false);
 
         // @HACK
         // droid.reconnect() doesn't work for now. need FIX
@@ -47,15 +47,21 @@ droid.on('connect', () => {
     // add commands toggler
     HANDLERS.addControls({ 'start:press': toggleControls });
 
+    // visual signal connect
+    const spin = droid.colorSpin(100);
+    setTimeout(() => {
+        clearInterval(spin);
+    }, 1000);
+
     // activate joystick controls
-    toggleControls();
+    toggleControls(true);
 });
 
 //
 // toggle user commands / controls helper
 //
-function toggleControls() {
-    if (!droid.userControl) {
+function toggleControls(toggle = !droid.userControl) {
+    if (toggle) {
         CONTROLS_LISTENERS = HANDLERS.addControls(USER_CONTROLS);
         console.log('[BB8] Enabled user control. Go nuts!');
     } else {
@@ -64,5 +70,5 @@ function toggleControls() {
     }
 
     // toggle control flag
-    droid.userControl = !droid.userControl;
+    droid.userControl = toggle;
 }
