@@ -48,6 +48,7 @@ export default class BB8 extends EventEmitter {
         this.userControl = false;
 
         // orb props
+        this.color = null;
         this.orientation = 0;
         this.speed = 0;
         // this.boost = 0; // @TODO
@@ -106,12 +107,10 @@ export default class BB8 extends EventEmitter {
     onConnect() {
         console.log('[BB8] Connected!');
 
-        // get device perm flags
-        this.device.getPermOptionFlags((err, data) => {
-            if (!err) { return void 0; }
-            this.driveMode = data.vectorDrive;
-        });
+        // get orb props / flags
+        this.getOrbProps();
 
+        // set connect and emit event
         this.isConnected = true;
         this.emit('connect');
     }
@@ -135,5 +134,19 @@ export default class BB8 extends EventEmitter {
                 }
             });
         }
+    }
+
+    getOrbProps() {
+        // get device perm flags
+        this.device.getPermOptionFlags((err, data) => {
+            if (!err) { return void 0; }
+            this.driveMode = data.vectorDrive;
+        });
+
+        // get orb current color (if any, default 0x000000)
+        this.getCurrentColor((color) => {
+            console.log('[BB8] Current color @ ', color);
+            this.color = color;
+        });
     }
 }
