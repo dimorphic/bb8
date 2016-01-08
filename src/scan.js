@@ -1,6 +1,6 @@
 // deps
 import BLE from 'noble';
-import { inspect } from './helpers';
+import { inspect } from './lib/helpers';
 
 BLE.on('stateChange', (state) => {
     console.log('[BLE] BLE state @ ', state);
