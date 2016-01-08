@@ -136,7 +136,7 @@ export default function (droid, xbox) {
 
         // set droid color
         // console.log('droid new color @ ', BUTTONS[button]);
-        droid.color(BUTTONS[button]);
+        droid.setColor(BUTTONS[button]);
     };
 
     // expose
