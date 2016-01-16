@@ -1,10 +1,10 @@
 // deps
-import BB8 from './lib/bb8';
-import Joystick from './lib/joystick';
-import { respawnMe } from './lib/helpers';
+import BB8 from '../../lib/bb8';
+import Joystick from '../../lib/joystick';
+import { respawnMe } from '../../lib/helpers';
 
 // device uuid
-import { DEVICE_UUID } from './config';
+import { DEVICE_UUID } from '../../config';
 import commands from './commands';
 
 //

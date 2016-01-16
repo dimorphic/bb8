@@ -13,8 +13,8 @@ export default function (joystick) {
     //
     //  check if coord position is in range
     //
-    joystick.positionInRange = (position, threeshold) => {
-        return (Math.abs(position) > threeshold);
+    joystick.positionInRange = (position, threshold) => {
+        return (Math.abs(position) > threshold);
     };
 
     //

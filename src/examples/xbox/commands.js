@@ -10,8 +10,8 @@ export default function (droid, xbox) {
     const COMMANDS = {};
     let COMMANDS_LISTENERS = {};
 
-    // XBOX fine control sticks / triggers threeshold
-    const STICK_THREESHOLD = 0.3;
+    // XBOX fine control sticks / triggers threshold
+    const STICK_THRESHOLD = 0.3;
 
     //
     //  ADD COMMAND(S) CONTROLS
@@ -78,7 +78,7 @@ export default function (droid, xbox) {
     };
 
     COMMANDS.handleSticks = (stick, position) => {
-        const inRange = xbox.positionInRange(position, STICK_THREESHOLD);
+        const inRange = xbox.positionInRange(position, STICK_THRESHOLD);
 
         if (!inRange) { return void 0; }
 

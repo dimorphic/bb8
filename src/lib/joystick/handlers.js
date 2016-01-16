@@ -53,7 +53,7 @@ export function handleSticks(device) {
 
     // default xbox control sticks
     const STICKS = JOYSTICK.STICKS;
-    // const STICK_THREESHOLD = 0.1; // @TODO
+    // const STICK_THRESHOLD = 0.1; // @TODO
 
     // attach sticks events
     STICKS.forEach((stick) => {
@@ -62,7 +62,7 @@ export function handleSticks(device) {
         // on move
         controller.on(moveEvent, (pos) => {
             // console.log(`[JOYSTICK] Stick ${stick} @ ${pos}`);
-            // if (!pos > STICK_THREESHOLD) { return void 0; }
+            // if (!pos > STICK_THRESHOLD) { return void 0; }
 
             // update internal sticks positions pointer
             handleStickPosition.call(this, stick, pos);
@@ -88,7 +88,7 @@ export function handleTriggers(device) {
 
     // default xbox control triggers
     const TRIGGERS = JOYSTICK.TRIGGERS;
-    // const TRIGGER_THREESHOLD = 0.1; // @TODO
+    // const TRIGGER_THRESHOLD = 0.1; // @TODO
 
     // attach triggers events
     TRIGGERS.forEach((trigger) => {
