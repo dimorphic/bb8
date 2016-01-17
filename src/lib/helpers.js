@@ -2,19 +2,9 @@
 import util from 'util';
 import { spawn } from 'child_process';
 
+// @TODO: split this to respawn(er).js ?
 // respawn code
 const RESPAWN_CODE = 7; // holy humber!
-
-//
-//  object representation / stringify
-//
-const inspect = (obj, depth = null) => {
-    return util.inspect(obj, {
-        showHidden: true,
-        colors: true,
-        depth// go deep!
-    });
-};
 
 //
 //  respawn requester
@@ -45,9 +35,28 @@ const respawner = (app, args = [], opts = {}) => {
     });
 };
 
+//
+//  object representation / stringify
+//
+const inspect = (obj, depth = null) => {
+    return util.inspect(obj, {
+        showHidden: true,
+        colors: true,
+        depth// go deep!
+    });
+};
+
+//
+//  fill array helper (till Array.fill)
+//
+const fillArray = (size, item) => {
+    return Array.apply(null, Array(size)).map(() => { return item; });
+};
+
 // exports
 module.exports = {
     inspect,
+    fillArray,
 
     respawner,
     respawnMe
