@@ -8,10 +8,10 @@ import { DEVICE_UUID } from '../../config';
 import commands from './commands';
 
 //
-//  Create xbox & droid
+//  Create xbox & BB8 droid
 //
 const xbox = new Joystick({ autoConnect: true });
-const droid = new BB8({ uuid: DEVICE_UUID, autoConnect: true }); // @TODO
+const droid = new BB8({ uuid: DEVICE_UUID, autoConnect: true });
 
 const HANDLERS = commands(droid, xbox);
 let CONTROLS_LISTENERS = [];
@@ -49,9 +49,8 @@ droid.on('connect', () => {
 
     // visual signal connect
     const spin = droid.colorSpin(100);
-    setTimeout(() => {
-        clearInterval(spin);
-    }, 1000);
+    droid.turn(~~(Math.random() * 360));
+    setTimeout(() => { clearInterval(spin); }, 1000);
 
     // activate joystick controls
     toggleControls(true);
