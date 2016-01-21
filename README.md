@@ -10,7 +10,7 @@ That's it, folks!
 
 #### Status
 - [x] Control BB8 with Xbox controller?!
-- [ ] Control BB8 with Myo?! (*The Force is getting stronger*)
+- [x] Control BB8 with Myo?! (*The Force is getting stronger*)
 
 #### Tools:
 - [Sphero Star Wars BB8](http://www.sphero.com/starwars)
@@ -35,7 +35,7 @@ That's it, folks!
 ##### Phase #02:
 - [x] Read Myo controller output
 - [x] Create Myo wrapper
-- [ ] Create droid-myo controller example
+- [x] Create droid-myo controller example
 
 ##### Phase #03:
 - [ ] Cleanup here-and-there
