@@ -7,11 +7,9 @@ import { throttle } from 'lodash';
 // BB8 device uuid
 import { DEVICE_UUID } from '../../config';
 
+// MYO FORCE handlers & commands
 import handlers from './handlers';
 import commands from './commands';
-
-// @DEBUG
-import { inspect } from '../../lib/helpers';
 
 //
 //  Create Myo & BB8 droid
@@ -46,8 +44,6 @@ const USER_GESTURES = {
 
 // DROID on connect
 droid.on('connect', () => {
-    console.log('DROID CONNECTED !');
-
     // visual signal connect
     const spin = droid.colorSpin(100);
     droid.turn(~~(Math.random() * 360));

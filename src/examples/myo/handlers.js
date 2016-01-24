@@ -1,12 +1,3 @@
-// deps
-import { throttle } from 'lodash';
-
-// @DEBUG
-// import { inspect } from './lib/helpers';
-
-// helpers
-// const throttleLog = throttle((args) => { console.log(args); }, 500);
-
 //
 //  HANDLERS
 //  to control BB8 via Myo bracelet

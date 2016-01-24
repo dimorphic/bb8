@@ -2,9 +2,6 @@
 import { throttle } from 'lodash';
 import tinycolor from 'tinycolor2';
 
-// @DEBUG
-// import { inspect } from './lib/helpers';
-
 //
 //  COMMANDS and HANDLERS
 //  to control BB8 via Myo
