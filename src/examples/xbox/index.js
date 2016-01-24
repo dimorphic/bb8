@@ -5,6 +5,9 @@ import { respawnMe } from '../../lib/helpers';
 
 // device uuid
 import { DEVICE_UUID } from '../../config';
+
+// XBOX FORCE handlers & commands
+import handlers from './handlers';
 import commands from './commands';
 
 //
@@ -13,18 +16,17 @@ import commands from './commands';
 const xbox = new Joystick({ autoConnect: true });
 const droid = new BB8({ uuid: DEVICE_UUID, autoConnect: true });
 
-const HANDLERS = commands(droid, xbox);
-let CONTROLS_LISTENERS = [];
+const HANDLERS = handlers(droid, xbox);
+const COMMANDS = commands(droid, xbox);
 
-// DROID (RE)BOOT / RESPAWNER
+//
+//  FAILSAFE
+//  DROID (RE)BOOT / RESPAWNER
+//
 HANDLERS.addControls({
     'home:press': () => {
-        console.log('I GO DIE NOW!');
         toggleControls(false);
-
-        // @HACK
-        // droid.reconnect() doesn't work for now. need FIX
-        respawnMe();
+        respawnMe(); // @HACK: droid.reconnect() doesn't work for now. need FIX
     }
 });
 
@@ -33,9 +35,9 @@ HANDLERS.addControls({
 //  can be toggled on/off
 //
 const USER_CONTROLS = {
-    'stick:move': HANDLERS.handleSticks,
-    'trigger:move': HANDLERS.handleTriggers,
-    'button:press': HANDLERS.controlColor,
+    'stick:move': COMMANDS.handleSticks,
+    'trigger:move': COMMANDS.handleTriggers,
+    'button:press': COMMANDS.controlColor,
 
     'select:press': droid.toggleCalibration,
     'rb:press': () => { droid.getFlags(); },
@@ -61,10 +63,10 @@ droid.on('connect', () => {
 //
 function toggleControls(toggle = !droid.userControl) {
     if (toggle) {
-        CONTROLS_LISTENERS = HANDLERS.addControls(USER_CONTROLS);
+        HANDLERS.addControls(USER_CONTROLS);
         console.log('[BB8] Enabled user control. Go nuts!');
     } else {
-        HANDLERS.removeControls(CONTROLS_LISTENERS);
+        HANDLERS.removeControls(USER_CONTROLS);
         console.log('[BB8] Disabled user controls');
     }
 

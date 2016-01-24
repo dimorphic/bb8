@@ -1,6 +1,3 @@
-// @DEBUG
-// import { inspect } from './lib/helpers';
-
 //
 //  COMMANDS and HANDLERS
 //  to control BB8 via Xbox controller
@@ -8,54 +5,9 @@
 export default function (droid, xbox) {
     // magic powers
     const COMMANDS = {};
-    let COMMANDS_LISTENERS = {};
 
     // XBOX fine control sticks / triggers threshold
     const STICK_THRESHOLD = 0.3;
-
-    //
-    //  ADD COMMAND(S) CONTROLS
-    //
-    COMMANDS.addControls = (controls) => {
-        const EVENTS = Object.keys(controls);
-        const listeners = {};
-
-        EVENTS.forEach((event) => {
-            const control = xbox.on(event, controls[event]);
-            const callback = control._events[event];
-            listeners[event] = callback;
-        });
-
-        // add new listeners to tracker list
-        COMMANDS_LISTENERS = Object.assign({}, COMMANDS_LISTENERS, listeners);
-
-        return listeners;
-    };
-
-    //
-    //  REMOVE COMMAND(S) CONTROLS
-    //
-    COMMANDS.removeControls = (listeners) => {
-        const EVENTS = Object.keys(listeners);
-
-        EVENTS.forEach((event) => {
-            const listener = listeners[event];
-
-            // check for multiple listeners
-            if (typeof listener === 'function') {
-                // remove event
-                xbox.removeListener(event, listener);
-            } else if (Array.isArray(listener)) {
-                listener.forEach((it) => {
-                    // remove event
-                    xbox.removeListener(event, it);
-                });
-            }
-
-            // clear event from tracker list
-            delete COMMANDS_LISTENERS[event];
-        });
-    };
 
     //
     //  HANDLERS
