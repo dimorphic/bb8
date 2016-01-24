@@ -41,8 +41,60 @@ const BB8 = {
     }
 };
 
+//
+//  MYO
+//
+const MYO = {
+    POSES: [
+        'fist',
+        'fingers_spread',
+        'wave_in',
+        'wave_out'
+    ],
+
+    COMMANDS: [
+        'lock',
+        'unlock',
+        'zeroOrientation',
+        'vibrate',
+        'requestBatteryLevel',
+        'requestBluetoothStrength',
+        'streamEMG'
+    ],
+
+    EVENTS: [
+        // stream events
+        'pose',
+        'pose_off',
+        'rest',
+        'status',
+
+        'accelerometer',
+        'gyroscope',
+        'orientation',
+        'emg',
+        'imu',
+
+        // status events
+        'connected',
+        'disconnected',
+
+        'arm_synced',
+        'arm_unsynced',
+        'warmup_completed',
+
+        'locked',
+        'unlocked',
+
+        'rssi',
+        'battery_level',
+        'bluetooth_strength'
+    ]
+};
+
 // expose
 module.exports = {
     JOYSTICK,
-    BB8
+    BB8,
+    MYO
 };
