@@ -4,13 +4,7 @@
 #### What?
 Control your [Sphero Star Wars BB8](http://www.sphero.com/starwars) droid with a [Xbox 360 controller](http://www.xbox.com/xbox-360/accessories/controllers/wireless-controller) (wireless) !
 
-Or, is ***The Force*** strong enough in you? If you have a [Myo](http://myo.com) armband, you can use commands such as `Force Push` or `Force Turn` (more to come) to control your BB8 droid as a Jedi or Sith master! (PS: I haz cookies!)
-
-That's it, folks!
-
-#### Status
-- [x] Control BB8 with Xbox controller?!
-- [x] Control BB8 with Myo?! (*The Force is getting stronger*)
+Or, is ***The Force*** strong enough in you? If you have a [Myo](http://myo.com) armband, you can use commands such as `Force Push` or `Force Turn` (more to come) to control your BB8 droid as a Jedi or Sith master!
 
 #### Tools:
 - [Sphero Star Wars BB8](http://www.sphero.com/starwars)
@@ -20,26 +14,29 @@ That's it, folks!
 - ES6
 - Babel
 
+### Requirements
+1. Node.js `0.12.0`
+2. [Xbox 360 driver for OSX](https://github.com/360Controller/360Controller)
+
+### Getting started
+1. Clone repo
+2. Install deps: `$ npm install`
+3. Build app: `$ npm run build` (`$ npm run dev` - for watcher)
+3. Find BB8 UUID: `$ node dist/scan`
+4. Add BB8 UUID to config `src/config.js` (DEVICE_UUID)
+5. Start app:
+
+    `$ npm start` (starts Xbox example by default and can be restarted on demand)
+    
+    `$ node dist/example/xbox`
+    
+    `$ node dist/example/myo`
+
 #### Libs:
-- @TODO
+- Xbox 360 driver (tested 0.15_beta3)
+- Myo
+- Sphero
+- Cylon
 
-#### TODO:
-##### Phase #01:
-- [x] Read Xbox controller output
-- [x] Read Sphero data streams?
-- [x] Map Sphero commands to generics
-- [x] Create Joystick wrapper
-- [x] Create BB8 wrapper
-- [x] Create droid-xbox controller example
-
-##### Phase #02:
-- [x] Read Myo controller output
-- [x] Create Myo wrapper
-- [x] Create droid-myo controller example
-
-##### Phase #03:
-- [ ] Cleanup here-and-there
-- [ ] Publish!
-
-@stay tuned
-@soon
+#### Todo:
+- better docs
