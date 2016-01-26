@@ -44,4 +44,6 @@ Demo (or it didn't happen!) - click for full video:
 - Cylon
 
 #### Todo:
+- cleanup here-and-there
 - better docs
+- improve
