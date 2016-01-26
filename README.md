@@ -16,7 +16,7 @@ Or, is ***The Force*** strong enough in you? If you have a [Myo](http://myo.com)
 
 ### Requirements
 1. Node.js `0.12.0`
-2. [Xbox 360 driver for OSX](https://github.com/360Controller/360Controller)
+2. [Xbox 360 driver for OSX](https://github.com/360Controller/360Controller) (tested 0.15_beta3)
 
 ### Getting started
 1. Clone repo
@@ -33,7 +33,7 @@ Or, is ***The Force*** strong enough in you? If you have a [Myo](http://myo.com)
     `$ node dist/example/myo`
 
 #### Libs:
-- Xbox 360 driver (tested 0.15_beta3)
+- Xbox 360 driver (for OSX)
 - Myo
 - Sphero
 - Cylon
