@@ -8,8 +8,8 @@ Or, is ***The Force*** strong enough in you? If you have a [Myo](http://myo.com)
 
 Demo (or it didn't happen!) - click for full video:
 
-[![bb8-xbox-demo](https://j.gifs.com/o2jZQ3.gif)](https://www.youtube.com/watch?v=sLJMBUUDn3E&index=2&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
-[![bb8-myo-demo](https://j.gifs.com/Z6z88J.gif)](https://www.youtube.com/watch?v=88WVjfoyQoQ&index=1&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
+[![bb8-xbox-demo](https://j.gifs.com/o2jZQ3.gif)](https://www.youtube.com/watch?v=88WVjfoyQoQ&index=1&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
+[![bb8-myo-demo](https://j.gifs.com/Z6z88J.gif)](https://www.youtube.com/watch?v=sLJMBUUDn3E&index=2&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
 
 #### Tools:
 - [Sphero Star Wars BB8](http://www.sphero.com/starwars)
