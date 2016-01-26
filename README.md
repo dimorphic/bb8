@@ -6,6 +6,11 @@ Control your [Sphero Star Wars BB8](http://www.sphero.com/starwars) droid with a
 
 Or, is ***The Force*** strong enough in you? If you have a [Myo](http://myo.com) armband, you can use commands such as `Force Push` or `Force Turn` (more to come) to control your BB8 droid as a Jedi or Sith master!
 
+Demo (or it didn't happen!) - click for full video:
+
+[![bb8-xbox-demo](https://j.gifs.com/o2jZQ3.gif)](https://www.youtube.com/watch?v=sLJMBUUDn3E&index=2&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
+[![bb8-myo-demo](https://j.gifs.com/Z6z88J.gif)](https://www.youtube.com/watch?v=88WVjfoyQoQ&index=1&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
+
 #### Tools:
 - [Sphero Star Wars BB8](http://www.sphero.com/starwars)
 - [Xbox 360 wireless controller](http://www.xbox.com/xbox-360/accessories/controllers/wireless-controller) (+ receiver)
