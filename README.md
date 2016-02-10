@@ -2,7 +2,7 @@
 ### The droid you're looking for!
 
 #### What?
-Control your [Sphero Star Wars BB8](http://www.sphero.com/starwars) droid with a [Xbox 360 controller](http://www.xbox.com/xbox-360/accessories/controllers/wireless-controller) (wireless) !
+Control your [Sphero Star Wars BB8](http://www.sphero.com/starwars) droid with an [Xbox 360 controller](http://www.xbox.com/xbox-360/accessories/controllers/wireless-controller) (wireless) !
 
 Or, is ***The Force*** strong enough in you? If you have a [Myo](http://myo.com) armband, you can use commands such as `Force Push` or `Force Turn` (more to come) to control your BB8 droid as a Jedi or Sith master!
 
