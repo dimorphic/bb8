@@ -1,10 +1,31 @@
 {
   "name": "bb8",
-  "version": "0.0.1",
-  "description": "bb8",
-  "author": "Le me",
-  "license": "ISC",
-  "main": "bot.js",
+  "description": "Force control Sphero BB8 w/ Xbox controller or Myo armband",
+  "version": "1.0.0",
+  "author": "Sabin Tudor <contact@sabin-tudor.ro>",
+  "contributors": [],
+  "license": "GPL-v3",
+  "repository": "dimorphic/bb8",
+  "homepage": "https://github.com/dimorphic/bb8#readme",
+  "keywords": [
+    "bb8",
+    "sphero",
+    "xbox",
+    "myo",
+    "star",
+    "wars",
+    "sith",
+    "jedi",
+    "force",
+    "control",
+    "wrapper",
+    "joystick",
+    "armband"
+  ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "main": "src/lib/bb8/index.js",
   "scripts": {
     "start": "node_modules/.bin/nodemon --quiet --watch dist --exec 'clear && node dist/'",
     "build": "rm -rf dist && node_modules/.bin/babel src --out-dir dist --source-maps inline",
