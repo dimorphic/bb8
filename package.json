@@ -7,6 +7,9 @@
   "license": "GPL-v3",
   "repository": "dimorphic/bb8",
   "homepage": "https://github.com/dimorphic/bb8#readme",
+  "bugs": {
+    "url": "https://github.com/dimorphic/bb8/issues"
+  },
   "keywords": [
     "bb8",
     "sphero",
