@@ -27,7 +27,7 @@ If you own a [Myo](http://myo.com) armband, you can use gesture commands such as
 3. OSX only: [Xbox 360 driver](https://github.com/360Controller/360Controller) (tested 0.15_beta3)
 
 ### Getting started
-1. Clone repo
+1. Clone repo or `$ npm install bb8`
 2. Install deps: `$ npm install`
 3. Build app: `$ npm run dev` (watcher ready)
 3. Find BB8 UUID: `$ node dist/scan`
