@@ -1,7 +1,7 @@
 # Star Wars BB8 + Xbox controller + Myo
 ### The droid you're looking for!
 
-#### What?
+#### What?!
 Control your [Sphero Star Wars BB8](http://www.sphero.com/starwars) droid with an [Xbox 360 controller](http://www.xbox.com/xbox-360/accessories/controllers/wireless-controller) (wireless) !
 
 Or, is ***The Force*** strong enough in you?
