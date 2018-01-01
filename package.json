@@ -32,6 +32,7 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf ./dist",
+    "scan": "node src/scan",
     "start": "node_modules/.bin/nodemon --quiet --watch dist --exec 'clear && node dist/'",
     "dev": "npm run clean && node_modules/.bin/babel src --out-dir dist --watch --debug",
     "build": "npm run clean && node_modules/.bin/babel src --out-dir dist --source-maps inline"

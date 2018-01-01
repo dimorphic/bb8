@@ -1,6 +1,6 @@
 // deps
-import util from 'util';
-import { spawn } from 'child_process';
+const util = require('util');
+const { spawn } = require('child_process');
 
 // @TODO: split this to respawn(er).js ?
 // respawn code
