@@ -27,22 +27,25 @@
     "bb8"
   ],
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 6.0.0"
   },
-  "main": "src/lib/bb8/index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "clean": "rimraf ./dist",
+    "scan": "node src/scan",
     "start": "node_modules/.bin/nodemon --quiet --watch dist --exec 'clear && node dist/'",
-    "build": "rm -rf dist && node_modules/.bin/babel src --out-dir dist --source-maps inline",
-    "dev": "node_modules/.bin/babel src --out-dir dist --watch --debug"
+    "dev": "npm run clean && node_modules/.bin/babel src --out-dir dist --watch --debug",
+    "build": "npm run clean && node_modules/.bin/babel src --out-dir dist --source-maps inline"
   },
   "dependencies": {
     "color": "^0.10.1",
-    "cylon": "^1.2.0",
-    "cylon-ble": "^0.9.0",
-    "cylon-joystick": "^0.19.0",
+    "cylon": "^1.3.0",
+    "cylon-ble": "^0.10.1",
+    "cylon-joystick": "^0.22.0",
     "lodash": "^3.10.1",
     "myo": "^2.1.1",
-    "noble": "^1.2.1",
+    "noble": "^1.8.1",
+    "source-map-support": "^0.5.0",
     "sphero": "^0.5.0",
     "tinycolor2": "^1.3.0"
   },
@@ -57,6 +60,7 @@
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.0.0",
     "eslint-plugin-react": "^3.11.3",
-    "nodemon": "^1.8.1"
+    "nodemon": "^1.14.7",
+    "rimraf": "^2.6.2"
   }
 }
