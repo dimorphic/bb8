@@ -22,23 +22,31 @@ If you own a [Myo](http://myo.com) armband, you can use gesture commands such as
 - Babel
 
 ### Requirements
-1. Node.js `0.12.0`
+1. Node.js >= `6.0.0`
 2. Bluetooth ready computer (tested on Macbook Pro)
 3. OSX only: [Xbox 360 driver](https://github.com/360Controller/360Controller) (tested 0.15_beta3)
 
 ### Getting started
-1. Clone repo or `$ npm install bb8`
+1. Clone repo
 2. Install deps: `$ npm install`
-3. Build app: `$ npm run dev` (watcher ready)
-3. Find BB8 UUID: `$ node dist/scan`
-4. Add BB8 UUID to config `src/config.js` (DEVICE_UUID)
-5. Start app:
+3. Find your BB8 device UUID using the BLE scanner included: `$ npm run scan`
+4. Add the BB8 UUID to the config in `src/config.js` (DEVICE_UUID)
 
-    `$ npm start` (starts Xbox example by default and can be restarted on demand)
+5. Build the code (pick one):
+- **Development mode**: `$ npm run dev` (will recompile code on changes)
+- **Production mode**: `$ npm run build`
 
-    `$ node dist/example/xbox`
+Code will be 'compiled' to `dist/` folder.
 
-    `$ node dist/example/myo`
+*Note*: You'll have to open another terminal window to run the examples when using the **developing mode** as the watcher needs to always run.
+
+6. **Running examples** (finnaly!) - start the app via any:
+
+`$ npm start` (starts Myo example by default)
+
+`$ node dist/example/xbox`
+
+`$ node dist/example/myo`
 
 #### Libs:
 - Xbox 360 driver (for OSX)
@@ -49,4 +57,4 @@ If you own a [Myo](http://myo.com) armband, you can use gesture commands such as
 #### Todo:
 - cleanup here-and-there
 - better docs
-- improve
+- convert to TypeScript ?
