@@ -1,7 +1,7 @@
 {
   "name": "bb8",
   "description": "Force control Sphero BB8 w/ Xbox controller or Myo armband",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Sabin Tudor <contact@sabin-tudor.ro>",
   "contributors": [],
   "license": "GPL-v3",
