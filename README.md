@@ -9,9 +9,8 @@ Or, is ***The Force*** strong enough in you?
 If you own a [Myo](http://myo.com) armband, you can use gesture commands such as `Force Push` or `Force Turn` (more to come) to control your BB8 droid as a Jedi or Sith master!
 
 #### Demo, or it didn't happen! (click for full video):
-
-[![bb8-xbox-demo](https://j.gifs.com/o2jZQ3.gif)](https://www.youtube.com/watch?v=88WVjfoyQoQ&index=1&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
-[![bb8-myo-demo](https://j.gifs.com/Z6z88J.gif)](https://www.youtube.com/watch?v=sLJMBUUDn3E&index=2&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
+[![bb8-xbox-demo](https://github.com/user-attachments/assets/30281d20-8a69-4206-9ff7-2778b689a69b)](https://www.youtube.com/watch?v=88WVjfoyQoQ&index=1&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
+[![bb8-myo-demo](https://github.com/user-attachments/assets/cd85f72a-8d2c-467a-9c5a-d6d56b11df14)](https://www.youtube.com/watch?v=sLJMBUUDn3E&index=2&list=PLDwEXTsfrjH3ouxfuAtGlQaD6N6JSqN3X)
 
 ### Tools:
 - [Sphero Star Wars BB8](http://www.sphero.com/starwars)
